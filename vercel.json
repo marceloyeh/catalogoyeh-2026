@@ -1,0 +1,10 @@
+@'
+{
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
+  ]
+}
+'@ | Out-File -Encoding utf8 vercel.json
