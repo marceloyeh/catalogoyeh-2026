@@ -8,19 +8,16 @@ const app = express();
 // === COLEÇÃO TEMPORÁRIA (funciona no Vercel) ===
 app.use((req, res, next) => {
   req.user = { _id: 'user-test-123' };
-
-  // Cria coleção em memória se não existir
   if (!app.locals.colecao) {
     app.locals.colecao = [
-      { ano: 1868, grau: 'MS63', precoPago: 300, moedaCatalogo: { denominacao: '40 Réis Império', fotoAnverso: 'https://catalogoyeh.com.br/img/40reis-anv.jpg' }, fotosUsuario: ['https://i.imgur.com/9kR3vXj.jpg'] },
-      { ano: 1870, grau: 'MS65', precoPago: 600, moedaCatalogo: { denominacao: '40 Réis Império', fotoAnverso: 'https://catalogoyeh.com.br/img/40reis-anv.jpg' } },
-      { ano: 1873, grau: 'MS62', precoPago: 626, moedaCatalogo: { denominacao: '40 Réis Império', fotoAnverso: 'https://catalogoyeh.com.br/img/40reis-anv.jpg' }, fotosUsuario: ['https://i.imgur.com/9kR3vXj.jpg'] },
+      { ano: 1868, grau: 'MS63', precoPago: 300, moedaCatalogo: { denominacao: '40 Réis Império' }, fotosUsuario: ['https://i.imgur.com/9kR3vXj.jpg'] },
+      { ano: 1870, grau: 'MS65', precoPago: 600, moedaCatalogo: { denominacao: '40 Réis Império' } },
+      { ano: 1873, grau: 'MS62', precoPago: 626, moedaCatalogo: { denominacao: '40 Réis Império' }, fotosUsuario: ['https://i.imgur.com/9kR3vXj.jpg'] },
     ];
   }
   req.colecaoMock = app.locals.colecao;
   next();
 });
-
 // === CONFIGURAÇÕES ===
 app.engine('hbs', engine({
   extname: '.hbs',
