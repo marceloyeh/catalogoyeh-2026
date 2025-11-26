@@ -1,2 +1,22 @@
-node_modules
+# Arquivos sensíveis
 .env
+.env.local
+.env.production
+
+# Temp do multer (se voltar a usar)
+temp_uploads/
+temp_uploads/*
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Vercel
+.vercel
+.vercel_build_output
+
+# OS
+.DS_Store
+Thumbs.db
