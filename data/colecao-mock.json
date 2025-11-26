@@ -1,0 +1,16 @@
+[
+  {
+    "ano": 1901,
+    "grau": "MS62",
+    "precoPago": 2000,
+    "variantePersonalizada": "1A",
+    "certificado": "NGC",
+    "moedaCatalogo": {
+      "denominacao": "40 Réis Império",
+      "fotoAnverso": "https://catalogoyeh.com.br/img/40reis-anv.jpg"
+    },
+    "fotosUsuario": [
+      "https://res.cloudinary.com/damqoldi1/image/upload/v1764117417/catalogoyeh/dzpgnaiduc5i8otxwrbv.webp"
+    ]
+  }
+]

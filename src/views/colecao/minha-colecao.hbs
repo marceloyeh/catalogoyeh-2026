@@ -1,0 +1,21 @@
+<h1>Minha Coleção – Catalogoyeh 2026</h1>
+<a href="/adicionar">+ Adicionar moeda</a> • <a href="/">Início</a><hr>
+
+<details open>
+  <summary><strong>40 Réis Império ({{itens.length}} moedas)</strong></summary>
+  {{#each itens}}
+  <div class="item">
+    {{#if fotosUsuario.[0]}}
+      <img src="{{fotosUsuario.[0]}}?w=120&h=120&c_fill,g_auto" class="mini">
+    {{else}}
+      <img src="{{moedaCatalogo.fotoAnverso}}?w=120&h=120&c_fill,g_auto" class="mini">
+    {{/if}}
+    <div>
+      <strong>{{ano}}</strong> – {{grau}} – R$ {{precoPago}}
+      {{#if variantePersonalizada}}<br><small>Variante: {{variantePersonalizada}}</small>{{/if}}
+      {{#if certificado}}<br><small>Cert: {{certificado}}</small>{{/if}}
+    </div>
+    <button style="margin-left:auto">Vender</button>
+  </div>
+  {{/each}}
+</details>
