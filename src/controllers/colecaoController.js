@@ -14,14 +14,17 @@ exports.postAdicionar = async (req, res) => {
   try {
     let fotoUrl = null;
 
-    // Se enviou foto (qualquer campo com arquivo)
+    // Upload direto do buffer (funciona no Vercel)
     if (req.files && req.files.foto) {
-      const result = await cloudinary.uploader.upload(req.files.foto.data, {
-        folder: 'catalogoyeh',
-        quality: 'auto:best',
-        format: 'webp'
-      });
-      fotoUrl = result.secure_url;
+      const result = await cloudinary.uploader.upload_stream(
+        { folder: 'catalogoyeh', quality: 'auto:best', format: 'webp' },
+        (error, result) => {
+          if (error) throw error;
+          fotoUrl = result.secure_url;
+        }
+      );
+      req.files.foto.data.pipe(result);
+      await new Promise(resolve => result.on('finish', resolve));
     }
 
     const novoItem = {
@@ -30,10 +33,7 @@ exports.postAdicionar = async (req, res) => {
       precoPago: Number(req.body.precoPago) || 0,
       variantePersonalizada: req.body.variante || null,
       certificado: req.body.certificado || null,
-      moedaCatalogo: { 
-        denominacao: '40 Réis Império', 
-        fotoAnverso: 'https://catalogoyeh.com.br/img/40reis-anv.jpg' 
-      },
+      moedaCatalogo: { denominacao: '40 Réis Império', fotoAnverso: 'https://catalogoyeh.com.br/img/40reis-anv.jpg' },
       fotosUsuario: fotoUrl ? [fotoUrl] : []
     };
 
